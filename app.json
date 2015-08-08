@@ -42,6 +42,19 @@
       "description": "Docusign API integrator key. Read more at https://www.docusign.com/p/RESTAPIGuide/RESTAPIGuide.htm#GettingStarted/Integrator Keys.htm%3FTocPath%3DGetting%2520Started%7C_____1.",
       "required": true
     },
+    "DOCUSIGN_USE_TEMPLATES": {
+      "description": "Use predefined Docusign templates.",
+      "value": false,
+      "required": false
+    },
+    "DOCUSIGN_TEMPLATE_INDIVIDUAL": {
+      "description": "Docusign template ID for individual contributors.",
+      "required": false
+    },
+    "DOCUSIGN_TEMPLATE_CORPORATE": {    
+      "description": "Docusign template ID for corporate contributors.",
+      "required": false
+    },
     "AGREEMENT_NAME": {
       "description": "The name of the CLA document, this will be used in default templates and email body, as well as the file name of the generated PDF file.",
       "value": "Contribution License Agreement",
@@ -75,6 +88,16 @@
     "DOCUSIGN_TEMPLATE_ROLE": {
       "description": "Docusign Template Role name.",
       "value": "Contributor",
+      "required": false
+    },
+    "DOCUSIGN_TEMPLATE_ROLE_INDIVIDUAL": {
+      "description": "Docusign Template Role name for individuals.",
+      "value": "Contributor",
+      "required": false
+    },
+    "DOCUSIGN_TEMPLATE_ROLE_CORPORATE": {
+      "description": "Docusign Template Role name for corporations.",
+      "value": "Corporate Contributor",
       "required": false
     },
     "DOCUSIGN_SIGNATURE_POS_X": {

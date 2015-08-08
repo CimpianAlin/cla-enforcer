@@ -80,6 +80,7 @@ end
 
 module DocusignRest
   class Client
+    # override of docusign_rest to add eventNotification
     def create_envelope_from_document(options={})
       ios = create_file_ios(options[:files])
       file_params = create_file_params(ios)
