@@ -66,6 +66,7 @@ post '/github/?' do
 end
 
 post '/docusign/?' do
+  CLA.logger.info(params)
   if envelope_status_update?(params)
     status = params['DocuSignEnvelopeInformation']['EnvelopeStatus']['RecipientStatuses']['RecipientStatus']['Status']
 
