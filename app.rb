@@ -68,12 +68,16 @@ end
 post '/docusign/?' do
   CLA.logger.info(params)
   if envelope_status_update?(params)
-    status = params['DocuSignEnvelopeInformation']['EnvelopeStatus']['RecipientStatuses']['RecipientStatus']['Status']
+    if params['DocuSignEnvelopeInformation']['EnvelopeStatus']['RecipientStatuses']['RecipientStatus'].is_a?(Array)
+      rs = params['DocuSignEnvelopeInformation']['EnvelopeStatus']['RecipientStatuses']['RecipientStatus'].select{|i| i['Type'] == "Signer"}[0]
+    else
+      rs = params['DocuSignEnvelopeInformation']['EnvelopeStatus']['RecipientStatuses']['RecipientStatus']
+    end
 
     enqueue_command('docusign:update', {
       envelope_id: params['DocuSignEnvelopeInformation']['EnvelopeStatus']['EnvelopeID'],
-      status:      status,
-      updated_at:  params['DocuSignEnvelopeInformation']['EnvelopeStatus']['RecipientStatuses']['RecipientStatus'][status] || Time.now
+      status:      rs['Status'],
+      updated_at:  rs[rs['Status']] || Time.now
     })
 
     status 202
